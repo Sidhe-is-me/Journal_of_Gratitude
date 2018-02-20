@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Journals</h1>
+<% @journals.in_groups_of(3) do |group| %>
+  <div class="row">
+    <% group.compact.each do |journal| %>
+      <div class="col-md-4">
+        <%= image_tag journal.picture_url, width: '50%' if journal.picture.present? %>
+        <h6><%= link_to journal.date, journal %></h6>
+        <h5><%= link_to 'Show', journal %> <%= link_to 'Edit', edit_journal_path(journal) %><%= link_to 'Destroy', journal, method: :delete, data: { confirm: 'Are you sure?' } %></h>
+          <h6> <%= journal.entry.truncate(160) %></h6>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+
+
+
+
+<br>
+
+<%= link_to 'New Journal', new_journal_path %>

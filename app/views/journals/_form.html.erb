@@ -1,0 +1,45 @@
+<%= form_with(model: journal, local: true) do |form| %>
+  <% if journal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(journal.errors.count, "error") %> prohibited this journal from being saved:</h2>
+
+      <ul>
+      <% journal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date, id: :journal_date %>
+  </div>
+<br>
+  <div class="field">
+    <%= form.label :entry %>
+    <%= form.text_area :entry, id: :journal_entry %>
+  </div>
+<br>
+  <div class="field">
+    <%= form.label :picture %> <%= form.file_field :picture, id: :journal_picture %>
+  </div>
+
+  <h3>Moods</h3>
+<% @moods.each do |mood| %>
+  <div>
+    <br>
+    <p><%= @mood.emotion %></p>
+    <p><%= link_to 'Delete', mood_path(mood), method: :delete, data: { confirm: 'Are you sure?' } %></p>
+  </div>
+<% end %>
+<%= render partial: 'moods/form', locals: { mood: @mood } %>
+</p>
+
+
+<br>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+  <br>
+<% end %>

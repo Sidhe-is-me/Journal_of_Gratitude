@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @journal.date%>
+</p>
+
+<p>
+  <strong>Entry:</strong>
+  <%= @journal.entry %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= image_tag(@journal.picture_url, width: 200) if @journal.picture.present? %>
+
+<br></br>
+
+<%= link_to 'Edit', edit_journal_path(@journal) %> |
+<%= link_to 'Back', journals_path %>
